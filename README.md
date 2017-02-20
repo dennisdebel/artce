@@ -93,6 +93,28 @@ DSM 6.0.2-8451 Update 6
 - install node.js v4 from Synology official Package Center (published by Synology)
 - instal mongodb v2.1.1-160419-beta (package center > settings > package sources > add: http://synology.acmenet.ru/)
 
+```
+sudo mongod
+```
+
+load [http://yourserver:28017](http://yourserver:28017) to see if MongoDB is running.
+
+
+```
+git clone https://github.com/dennisdebel/rtce.git
+```
+
+```
+cd rich-text
+```
+
+```
+npm start
+```
+
+Load [http://yourserver:9999/newdoc](http://yourserver:9999/newdoc) in your browser
+
+
 ### Run Mongodb as service
 
 ####Step 1: Create a startup script
@@ -181,7 +203,7 @@ This will give you some debugging information. Also check your browsers Inspecto
 [https://quilljs.com/0.20/docs/modules/authorship/](https://quilljs.com/0.20/docs/modules/authorship/)
 
 
-#### Linenumbers
+#### Line numbers
 [https://quilljs.com/docs/modules/syntax/](https://quilljs.com/docs/modules/syntax/)
 
 
@@ -191,8 +213,6 @@ This will give you some debugging information. Also check your browsers Inspecto
 #### HTTP proxy 
 To circumvent pesky university firewalls
 [http://stackoverflow.com/questions/11172351/how-to-put-nodejs-and-apache-in-the-same-port-80](http://stackoverflow.com/questions/11172351/how-to-put-nodejs-and-apache-in-the-same-port-80)
-
-
 
 
 
