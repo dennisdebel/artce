@@ -139,9 +139,9 @@ This will give you some debugging information. Also check your browsers Inspecto
 
 
 ### TODO
--Make images resizable and or (responsive)
--Make it mobile ready (responsive)
--Authorship colors
--Line numbers
+- Make images resizable and or (responsive)
+- Make it mobile ready (responsive)
+- Authorship colors
+- Line numbers
 
 
