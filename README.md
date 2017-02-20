@@ -4,6 +4,10 @@ ARTCE is a web-based real-time on-line collaborative (text) editor working with 
 Inspired by Etherpad and built upon the examples provided by ShareDB (formerly ShareJS) using Nodejs, Mongodb, [Quill](https://github.com/quilljs/quill) and the [rich-text OT type](https://github.com/ottypes/rich-text).
 
 
+![demo img](https://raw.githubusercontent.com/dennisdebel/rtce/master/demo.gif)
+
+
+
 ## Motivation 
 Etherpad is a great tool for collaboration albeit resource heavy and buggy. Intrinsically and extrinsically wanting to host my own data, Etherpad didn't run on the hardware I had available (See: Specific Installation Guide). ARTCE also works somewhat better on mobile browsers.
 
@@ -214,7 +218,7 @@ This will give you some debugging information. Also check your browsers Inspecto
 To circumvent pesky university firewalls
 [http://stackoverflow.com/questions/11172351/how-to-put-nodejs-and-apache-in-the-same-port-80](http://stackoverflow.com/questions/11172351/how-to-put-nodejs-and-apache-in-the-same-port-80)
 
-
+####  Overview page with all created docs
 
 
 
