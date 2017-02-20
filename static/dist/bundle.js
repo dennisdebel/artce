@@ -6,7 +6,6 @@ sharedb.types.register(richText.type);
 var path;
 
 //echo current path
-console.log(window.location.pathname); // WORKS!
 var path = window.location.pathname;
 
 
@@ -24,9 +23,7 @@ window.connect = function() {
 };
 
 // Create local Doc instance mapped to 'examples' collection document with id 'richtext'
-//var db = require('sharedb-mongo')('mongodb://localhost:27017/poo');
 var doc = connection.get('examples', path);
- //doc.create([{insert: 'hi'}], 'rich-text'); //rich-text is the type/format of data
 doc.fetch(function(err) {
     if (err) throw err;
 	    if (doc.type === null) {
@@ -35,12 +32,18 @@ doc.fetch(function(err) {
 						     }
 							         //      callback();
 									       });
-									 //
 
+
+var toolbarOptions = [['bold', 'italic'], ['link', 'image']]; // add custom toolbar to Quill editor
 
 doc.subscribe(function(err) {
   if (err) throw err;
-  var quill = new Quill('#editor', {theme: 'snow'});
+  var quill = new Quill('#editor', {
+	modules:{
+		toolbar: toolbarOptions
+	},
+		theme: 'snow'
+	});
   quill.setContents(doc.data);
   quill.on('text-change', function(delta, oldDelta, source) {
     if (source !== 'user') return;
