@@ -3,18 +3,27 @@
 ARTCE is a web-based real-time on-line collaborative (text) editor working with Operational Transformations.
 Inspired by Etherpad and built upon the examples provided by ShareDB (formerly ShareJS) using Nodejs, Mongodb, [Quill](https://github.com/quilljs/quill) and the [rich-text OT type](https://github.com/ottypes/rich-text).
 
+
 ## Motivation 
 Etherpad is a great tool for collaboration albeit resource heavy and buggy. Intrinsically and extrinsically wanting to host my own data, Etherpad didn't run on the hardware I had available (See: Specific Installation Guide). ARTCE also works somewhat better on mobile browsers.
 
 
 ## General Installation Guide
-Install Node.js
-Install MongoDB
-Git clone these files in a directory 
+- Install Node.js
+- Install MongoDB
+- Git clone these files in a directory and enter it
+
 
 ### Run 
+Start MongoDB daemon
+
+sudo mongod
 ```
-npm start
+Start ARTCE
+```
+
+```
+npm start 
 ```
 
 Load [http://yourserver:9999](http://yourserver:9999)
@@ -26,25 +35,48 @@ Open ports 9999
 
 
 ## Official Installation Guide
-This ARTCE is based on the Rich-Text example provided by ShareDB. The example doesn't offer persistence, this has been added but was undocumented.
+This ARTCE is based on the Rich-Text example provided by ShareDB. To run their example:
 
+```
+git clone https://github.com/share/sharedb/tree/master/examples/rich-text
+```
 
-### Git clone
+```
+cd rich-text
+```
 
-### Install dependencies
+Install dependencies
 ```
 npm install
 ```
-TODO: add the [ShareDBMongo](https://github.com/share/sharedb-mongo) database adapter.
 
-
-### Build JavaScript bundle and run server
+Bundle Javascript and run server
 ```
 npm run build && npm start
 ```
 
-### Run app in browser
-Load [http://yourserver:9999](http://yourserver:9999)
+Run example in browser
+Load [http://yourserver:8080](http://yourserver:8080)
+
+The example doesn't offer persistence and was not documented.
+
+### Adding persistence 
+
+Cd in to 'rich-text' directory and install dependencies (add the [ShareDBMongo](https://github.com/share/sharedb-mongo) database adapter)
+
+```
+npm install sharedb-mongo
+```
+
+and 
+
+```
+npm install http
+```
+
+Now replace the examples server.js and /static/dist/bundle.js with the files from this repo, run NodeJS (npm start) and MongoDB daemon (sudo mongod) and you will have persistence. If not, copy all of the 'node_modules' from this repo in the 'rich-text' folder and try again ;)
+
+
 
 
 ## Specific Installation Guide
@@ -57,7 +89,8 @@ DS215j
 DSM 6.0.2-8451 Update 6
 
 ### Install 
-- install node.js v4 (published by Synology)
+- install git (server) from Synology official Package Center (published by Synology)
+- install node.js v4 from Synology official Package Center (published by Synology)
 - instal mongodb v2.1.1-160419-beta (package center > settings > package sources > add: http://synology.acmenet.ru/)
 
 ### Run Mongodb as service
@@ -138,10 +171,30 @@ node /var/services/homes/yourusername/rich-text/server.js
 This will give you some debugging information. Also check your browsers Inspector / Console. Node is picky on how you serve you scripts. Check your paths defined in server.js. Use Express and '__dirname' to define relative paths to your server.js script.
 
 
-### TODO
+### TODO & Wishlist
+
+#### Responsive
 - Make images resizable and or (responsive)
 - Make it mobile ready (responsive)
-- Authorship colors
-- Line numbers
+
+#### Colors 
+[https://quilljs.com/0.20/docs/modules/authorship/](https://quilljs.com/0.20/docs/modules/authorship/)
+
+
+#### Linenumbers
+[https://quilljs.com/docs/modules/syntax/](https://quilljs.com/docs/modules/syntax/)
+
+
+#### Export (html/markdown/pdf)
+[https://www.npmjs.com/package/quilljs-renderer](https://www.npmjs.com/package/quilljs-renderer)
+
+#### HTTP proxy 
+To circumvent pesky university firewalls
+[http://stackoverflow.com/questions/11172351/how-to-put-nodejs-and-apache-in-the-same-port-80](http://stackoverflow.com/questions/11172351/how-to-put-nodejs-and-apache-in-the-same-port-80)
+
+
+
+
+
 
 
