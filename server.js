@@ -42,8 +42,11 @@ function startServer() {
   //  app.use(express.static('node_modules/quill/dist'));
 		 //    var filePath = 'art/' + project + '/' + project;
 		//	     res.render(filePath)
-		   app.use(express.static('static'));
-		       app.use(express.static('node_modules/quill/dist'));
+
+//addition for serving files started from startup script, us express to serve static files from the scope of the scripts current dir (__dirname):
+app.use(express.static( __dirname + '/static'));
+app.use(express.static(__dirname + '/node_modules/quill/dist'));
+
 
 	//	});
  app.get('*', function(req, res, next){ //listen to all http requests 
@@ -53,8 +56,12 @@ function startServer() {
                                               // db.close();
 //var db = require('sharedb-mongo')('mongodb://localhost:27017/test');
 // var db = require('sharedb-mongo')('mongodb://localhost:27017/'+path); //works! only 1 time! (until server restart fuck)
-        app.use(express.static('static'));
-         app.use(express.static('node_modules/quill/dist'));
+
+//addition for serving files started from startup script, us express to serve static files from the scope of the scripts
+// current dir (__dirname):
+app.use(express.static( __dirname + '/static'));
+app.use(express.static(__dirname + '/node_modules/quill/dist'));
+
 });
 
 //app.all('*', function(req, res, next, callback){ 
@@ -113,7 +120,7 @@ doc.fetch(function(err) {
     backend.listen(stream);
   });
 
-  server.listen(8080);
-  console.log('Listening on http://localhost:8080');
+  server.listen(9999, "0.0.0.0"); //listen to port 9999 and magic ip 0.0.0.0 to listen to external requests
+  console.log('Listening on http://localhost:9999');
 
    }

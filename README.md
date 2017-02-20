@@ -17,12 +17,12 @@ Git clone these files in a directory
 npm start
 ```
 
-Load [http://yourserver:8080](http://yourserver:8080)
-New documents are created by going to a new path like: [http://yourserver:8080/yournewdoc](http://yourserver:8080/yournewdoc) or [http://yourserver:8080/todaysnotes](http://yourserver:8080/todaysnotes) 
+Load [http://yourserver:9999](http://yourserver:9999)
+New documents are created by going to a new path like: [http://yourserver:9999/yournewdoc](http://yourserver:9999/yournewdoc) or [http://yourserver:9999/todaysnotes](http://yourserver:9999/todaysnotes) 
 
 
 ### External Access
-Open ports 8080 
+Open ports 9999 
 
 
 ## Official Installation Guide
@@ -44,7 +44,7 @@ npm run build && npm start
 ```
 
 ### Run app in browser
-Load [http://yourserver:8080](http://yourserver:8080)
+Load [http://yourserver:9999](http://yourserver:9999)
 
 
 ## Specific Installation Guide
@@ -128,7 +128,7 @@ exec node /var/services/homes/yourusername/rich-text/server.js
 sudo start artce
 ```
 
-Will return something like: artce start/running, process 23583. To see if its really running, open up a browser and load [http://yourserver:8080](http://yourserver:8080). If all is well you will be greeted by the Quill rich text editor. If its not working, test the command in the startup script in a shell
+Will return something like: artce start/running, process 23583. To see if its really running, open up a browser and load [http://yourserver:9999](http://yourserver:9999). If all is well you will be greeted by the Quill rich text editor. If its not working, test the command in the startup script in a shell
 
 
 ```
