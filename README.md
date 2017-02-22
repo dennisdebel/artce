@@ -69,14 +69,10 @@ The example doesn't offer persistence and was not documented.
 Cd in to 'rich-text' directory and install dependencies (add the [ShareDBMongo](https://github.com/share/sharedb-mongo) database adapter)
 
 ```
-npm install sharedb-mongo
+npm install sharedb-mongo http mongodb
 ```
 
-and 
-
-```
-npm install http
-```
+(in case of errors try installing the packages individually, one by one)
 
 Now replace the examples server.js and /static/dist/bundle.js with the files from this repo, run NodeJS (npm start) and MongoDB daemon (sudo mongod) and you will have persistence. If not, copy all of the 'node_modules' from this repo in the 'rich-text' folder and try again ;)
 
@@ -197,19 +193,25 @@ node /var/services/homes/yourusername/rich-text/server.js
 This will give you some debugging information. Also check your browsers Inspector / Console. Node is picky on how you serve you scripts. Check your paths defined in server.js. Use Express and '__dirname' to define relative paths to your server.js script.
 
 
+### Special Pages
+[http://yourserver:9999/admin](http://yourserver:9999/admin) - overview of existing pads
+
+
 ### TODO & Wishlist
 
 #### Responsive
 - Make images resizable and or (responsive)
-- Make it mobile ready (responsive)
+- Make it mobile ready (responsive), meta viewport
+- copy paste on mobile safari / ios is as broken as with etherpad, because of websocket updates?
+
+#### Auto img urls to img 'tags'
+convert urls ending in .jpg, .png, .gif to actual images (so no uploading required) 
 
 #### Colors 
 [https://quilljs.com/0.20/docs/modules/authorship/](https://quilljs.com/0.20/docs/modules/authorship/)
 
-
 #### Line numbers
 [https://quilljs.com/docs/modules/syntax/](https://quilljs.com/docs/modules/syntax/)
-
 
 #### Export (html/markdown/pdf)
 [https://www.npmjs.com/package/quilljs-renderer](https://www.npmjs.com/package/quilljs-renderer)
@@ -218,7 +220,7 @@ This will give you some debugging information. Also check your browsers Inspecto
 To circumvent pesky university firewalls
 [http://stackoverflow.com/questions/11172351/how-to-put-nodejs-and-apache-in-the-same-port-80](http://stackoverflow.com/questions/11172351/how-to-put-nodejs-and-apache-in-the-same-port-80)
 
-####  Overview page with all created docs
+
 
 
 

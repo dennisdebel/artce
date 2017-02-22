@@ -22,39 +22,40 @@ window.connect = function() {
   connection.bindToSocket(socket);
 };
 
-// Create local Doc instance mapped to 'examples' collection document with id 'richtext'
-var doc = connection.get('examples', path);
+// Create local Doc instance mapped to 'examples' collection document with id 'richtext' DIRTY FIX for mongodb find segfaulting: create new collection for each document...ouch
+var doc = connection.get(path, path);
 doc.fetch(function(err) {
     if (err) throw err;
 	    if (doc.type === null) {
-		        doc.create([{insert: 'Hi!'}], 'rich-text'); // 'rich-text' is the type of data to be input in mongodb
-				        return;
-						     }
-							         //      callback();
-									       });
+		    doc.create([{insert: 'Hi!'}], 'rich-text'); // 'rich-text' is the type of data to be input in mongodb
+			return;
+	     }
+	//      callback();
+});
 
 
-// add custom toolbar to Quill editor
+
+
 var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    ['link','image','code-block'],
-  
-//    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }], 
-//  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-//  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-//  [{ 'direction': 'rtl' }],                         // text direction
+	['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+	['link','image','code-block'],
 
-//  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }], 
+//	[{ 'header': 1 }, { 'header': 2 }],               // custom button values
+	[{ 'list': 'ordered'}, { 'list': 'bullet' }],
+//	[{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+//	[{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+//	[{ 'direction': 'rtl' }],                         // text direction
 
-    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-//  [{ 'font': [] }],
-    [{ 'align': [] }], 
+//	[{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+	[{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-    ['clean']                                         // remove formatting button
- ];  
- 
+	[{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+//	[{ 'font': [] }],
+	[{ 'align': [] }],
+
+	['clean']                                         // remove formatting button
+ ];
+
 doc.subscribe(function(err) {
   if (err) throw err;
   var quill = new Quill('#editor', {

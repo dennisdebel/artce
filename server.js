@@ -7,17 +7,46 @@ var WebSocketJSONStream = require('websocket-json-stream');
 var pathie; //define global var for path use
 var db;
 var path = require('path');
+var MongoClient = require('mongodb').MongoClient
+var assert = require('assert');
 
 ShareDB.types.register(richText.type);
 
 startServer();
 
 function startServer() {
-  // Create a web server to serve files and listen to WebSocket connections
-  var app = express();
+	// Create a web server to serve files and listen to WebSocket connections
+	var app = express();
  
+	app.get('/', function(req, res, next){ //redirect when root dir is requested 
+        res.send('go home'); //send raw html strings
+	});
 
-//addition for serving files started from startup script, us express to serve static files from the scope of the scripts current dir (__dirname):
+
+	app.get('/admin', function(req, res, next){ //redirect to admin page
+   
+		// Connection URL 
+		var url = 'mongodb://localhost:27017/test';
+		// Use connect method to connect to the Server 
+		MongoClient.connect(url, function(err, db) {
+			assert.equal(null, err);
+			//console.log("Connected correctly to Mongodb server");
+
+			db.listCollections().toArray(function(err, collections){
+				var answer = '';
+				collections.forEach(function(coll){ //iterate over json/bson object returend by listCollections
+				if (coll.name.substr(0,1) == "/") {
+					answer =  answer + "<a href="+coll.name+">"+coll.name+"</a><br>";
+				}
+
+			});
+
+		res.send("<h2>existing pads:</h2>"+answer); //send html response
+
+		});
+																										});
+});
+																														    
 app.use(express.static( __dirname + '/static'));
 app.use(express.static(__dirname + '/node_modules/quill/dist'));
 app.get('*', function(req, res, next){ //listen to all http requests 
@@ -30,6 +59,7 @@ app.get('*', function(req, res, next){ //listen to all http requests
 	app.use(express.static(__dirname + '/node_modules/quill/dist'));
 
 });
+
 
 //create persistency, monog db integration
 var db = require('sharedb-mongo')('mongodb://localhost:27017/test');
@@ -47,9 +77,9 @@ doc.fetch(function(err) {
 
 
   
-  var server = http.createServer(app);
+	var server = http.createServer(app);
 
-  // Connect any incoming WebSocket connection to ShareDB
+	// Connect any incoming WebSocket connection to ShareDB
   var wss = new WebSocket.Server({server: server});
   wss.on('connection', function(ws, req) {
     var stream = new WebSocketJSONStream(ws);
