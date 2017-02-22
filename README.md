@@ -15,16 +15,17 @@ Etherpad is a great tool for collaboration albeit resource heavy and buggy. Intr
 ## General Installation Guide
 - Install Node.js
 - Install MongoDB
-- Git clone these files in a directory and enter it
+- Git clone these files in a directory and enter it ($ cd artce)
 
 
 ### Run 
 Start MongoDB daemon
 
+```
 sudo mongod
 ```
+
 Start ARTCE
-```
 
 ```
 npm start 
@@ -101,11 +102,11 @@ load [http://yourserver:28017](http://yourserver:28017) to see if MongoDB is run
 
 
 ```
-git clone https://github.com/dennisdebel/rtce.git
+git clone https://github.com/dennisdebel/artce.git
 ```
 
 ```
-cd rich-text
+cd artce
 ```
 
 ```
@@ -172,8 +173,8 @@ stop on runlevel [06]
 setuid http
 
 # exec the process. Use absolute path names so that there is no reliance on the $PATH environment variable
-# start npm in yourusername/rich-text (edit this to reflect the full, absolute path to your node script (server.js))
-exec node /var/services/homes/yourusername/rich-text/server.js
+# start npm in yourusername/artce (edit this to reflect the full, absolute path to your node script (server.js))
+exec node /var/services/homes/yourusername/artce/server.js
 
 ```
 
@@ -187,7 +188,7 @@ Will return something like: artce start/running, process 23583. To see if its re
 
 
 ```
-node /var/services/homes/yourusername/rich-text/server.js
+node /var/services/homes/yourusername/artce/server.js
 ```
 
 This will give you some debugging information. Also check your browsers Inspector / Console. Node is picky on how you serve you scripts. Check your paths defined in server.js. Use Express and '__dirname' to define relative paths to your server.js script.
