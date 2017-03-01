@@ -56,19 +56,28 @@ var toolbarOptions = [
 	['clean']                                         // remove formatting button
  ];
 
+
 doc.subscribe(function(err) {
   if (err) throw err;
   var quill = new Quill('#editor', {
-	modules:{
-		toolbar: toolbarOptions
-	},
-		theme: 'snow'
-	});
-  quill.setContents(doc.data);
+      modules:
+	      {
+		          toolbar: toolbarOptions,
+																	    },
+																		        theme: 'snow'
+																				    });
+var justHtmlContent = document.getElementById('justHtml'); //render content as html
+
+ quill.setContents(doc.data);
   quill.on('text-change', function(delta, oldDelta, source) {
-    if (source !== 'user') return;
+
+	// render html for export, also look into jsPDF, make button
+	var justHtml = quill.root.innerHTML; //get contents as html as they get entered
+    justHtmlContent.innerHTML = justHtml; //put html content from editor in 'justHtml' div
+
+ if (source !== 'user') return;
     doc.submitOp(delta, {source: quill});
-  });
+ });
   doc.on('op', function(op, source) {
     if (source === quill) return;
     quill.updateContents(op);
