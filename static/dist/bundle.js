@@ -53,8 +53,9 @@ var toolbarOptions = [
 //	[{ 'font': [] }],
 	[{ 'align': [] }],
 
-	['clean']                                         // remove formatting button
- ];
+	['clean'],                                         // remove formatting button
+    ['export']
+];
 
 
 doc.subscribe(function(err) {
@@ -66,14 +67,20 @@ doc.subscribe(function(err) {
 																	    },
 																		        theme: 'snow'
 																				    });
-var justHtmlContent = document.getElementById('justHtml'); //render content as html
+
+// render html for export, also look into jsPDF, make button:
+var exportButton = document.querySelector('.ql-export'); //export button 
+exportButton.addEventListener('click', function(e) {
+     var data = quill.root.innerHTML; //get quill contents as html
+	 exportWindow = window.open("data:text/html," + encodeURIComponent(data),
+	                        "_blank", "width=200,height=100");
+	exportWindow.focus(); //pop up blocked by adblockplus =/
+});
+  
+  
 
  quill.setContents(doc.data);
   quill.on('text-change', function(delta, oldDelta, source) {
-
-	// render html for export, also look into jsPDF, make button
-	var justHtml = quill.root.innerHTML; //get contents as html as they get entered
-    justHtmlContent.innerHTML = justHtml; //put html content from editor in 'justHtml' div
 
  if (source !== 'user') return;
     doc.submitOp(delta, {source: quill});
