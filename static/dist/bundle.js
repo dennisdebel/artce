@@ -95,7 +95,7 @@ function oneSecondFunction() {
 	div.innerHTML = html;
 }
 
-var timer = setInterval(oneSecondFunction,1000); //check for newlines and count them
+//var timer = setInterval(oneSecondFunction,1000); //check for newlines and count them
 
 quill.on('text-change', function(delta, oldDelta, source) {
 

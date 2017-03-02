@@ -216,7 +216,8 @@ This will give you some debugging information. Also check your browsers Inspecto
 
 #### Line numbers
 [https://quilljs.com/docs/modules/syntax/](https://quilljs.com/docs/modules/syntax/)
-- early 'poor mans' version of line numbers implemented
+- early 'poor mans' version of line numbers implemented, based on css counters....
+
 
 #### Export (html/markdown/pdf)
 - early html export function is implemented [https://www.npmjs.com/package/quilljs-renderer](https://www.npmjs.com/package/quilljs-renderer)
