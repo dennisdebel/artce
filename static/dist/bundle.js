@@ -76,11 +76,28 @@ exportButton.addEventListener('click', function(e) {
 	                        "_blank", "width=200,height=100");
 	exportWindow.focus(); //pop up blocked by adblockplus =/
 });
-  
-  
 
- quill.setContents(doc.data);
-  quill.on('text-change', function(delta, oldDelta, source) {
+
+quill.setContents(doc.data);
+
+function oneSecondFunction() {
+	var div = document.getElementById('sidebar'); //select sidebar
+	div.innerHTML = ""; //clear sidebar of old count
+	var html = ""; //empty var for html content
+	var text = quill.getText();
+	var lines = text.split(/\n/).length-1
+	//console.log(lines);
+	for (i = 0; i < lines; i++){
+		var div = document.getElementById('sidebar');
+		//div.innerHTML += i+"<br>";
+		html += i+"<br>";
+	}
+	div.innerHTML = html;
+}
+
+var timer = setInterval(oneSecondFunction,1000); //check for newlines and count them
+
+quill.on('text-change', function(delta, oldDelta, source) {
 
  if (source !== 'user') return;
     doc.submitOp(delta, {source: quill});
