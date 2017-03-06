@@ -198,6 +198,12 @@ This will give you some debugging information. Also check your browsers Inspecto
 [http://yourserver:9999/admin](http://yourserver:9999/admin) - overview of existing pads
 
 
+### Features
+- auto formatting of urls (urls become links, image urls become inline images)
+- line numbering
+- html 'export'
+
+
 ### TODO & Wishlist
 
 #### Responsive
@@ -205,22 +211,21 @@ This will give you some debugging information. Also check your browsers Inspecto
 - copy paste on mobile safari / ios is as broken as with etherpad, because of websocket updates?
 
 #### Auto img urls to img 'tags'
-- convert urls ending in .jpg, .png, .gif to actual images (so no uploading required) 
+- DONE:convert urls ending in .jpg, .png, .gif to actual images (so no uploading required) 
 
 #### Modes
 - presentations mode
 - static, read-only mode (also look into: http://www.sfyn.net/etherpad-lite-performances-an-ongoing-saga/)
  
-#### Colors 
+#### Authorship colors 
 [https://quilljs.com/0.20/docs/modules/authorship/](https://quilljs.com/0.20/docs/modules/authorship/)
 
 #### Line numbers
 [https://quilljs.com/docs/modules/syntax/](https://quilljs.com/docs/modules/syntax/)
-- early 'poor mans' version of line numbers implemented, based on css counters....
-
+- DONE: early 'poor mans' version of line numbers implemented, based on css counters....
 
 #### Export (html/markdown/pdf)
-- early html export function is implemented [https://www.npmjs.com/package/quilljs-renderer](https://www.npmjs.com/package/quilljs-renderer)
+- DONE: early html export function is implemented [https://www.npmjs.com/package/quilljs-renderer](https://www.npmjs.com/package/quilljs-renderer)
 
 #### HTTP proxy 
 To circumvent pesky university firewalls
