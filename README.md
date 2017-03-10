@@ -118,7 +118,62 @@ Load [http://yourserver:9999/newdoc](http://yourserver:9999/newdoc) in your brow
 
 ### Run Mongodb as service
 
-####Step 1: Create a startup script
+####Step 1: Secure your MongoDB installation
+MongoDB comes with no security whatsoever. 'Nice for testing' they call it, but I think this is very bad practice. It will have your server up and running in 1 minute, but it *will* get 'hacked' (well, just malicious access by script kiddies) in a few days.
+
+```
+mkdir /data/db
+
+mongod 
+
+```
+
+start mongo shell and create user:
+
+```
+mongo
+
+use admin //connect to admin database
+
+db.addUser("admin" , "yourpass")
+
+exit
+
+```
+
+restart monogod with authentication:
+```
+mongod --auth
+```
+
+if you open a browser on http://yourserver:28017/
+you will have to authenticate with your pass
+
+
+
+log back in with your admin credentials:
+
+```
+mongo admin -u admin -p
+
+```
+
+
+add normal user with read write acces for specific db
+
+```
+use testdatabase
+
+db.addUser("user", "testpasswd")
+```
+
+
+NOTE: provide server.js with your credentials!
+change your connecting url to: mongodb://user:testpasswd@localhost:27017/?authMechanism=DEFAULT&authSource=test
+or mongodb://admin:yourpass@localhost:27017/?authMechanism=DEFAULT&authSource=admin
+
+
+####Step 2: Create a startup script
 SSH into your box. Startup scripts are located in /etc/init/. Script follow the 'servicename.conf' naming convention, where 'servicename' is whatever you want it to be called. In our case mongodb. To create a startup script for monogd (MongoDB Daemon):
 
 ```
@@ -138,10 +193,10 @@ stop on runlevel [06]
 setuid root
 
 # exec the process. Use absolute path names so that there is no reliance on the $PATH environment variable
-exec /usr/bin/mongod
+exec /usr/bin/mongod --auth
 ```
 
-####Step 2: Test the script manually
+####Step 3: Test the script manually
 
 ```
 sudo start mongodb
@@ -214,7 +269,7 @@ This will give you some debugging information. Also check your browsers Inspecto
 - DONE:convert urls ending in .jpg, .png, .gif to actual images (so no uploading required) 
 
 #### Modes
-- presentations mode
+- presentations mode (print css works nicely in Firefox)
 - static, read-only mode (also look into: http://www.sfyn.net/etherpad-lite-performances-an-ongoing-saga/)
  
 #### Authorship colors 
