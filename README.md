@@ -81,7 +81,7 @@ Now replace the examples server.js and /static/dist/bundle.js with the files fro
 
 
 ## Specific Installation Guide
-My specific hardware is a somewhat crippled ARM based Synology Nas (NEVER EVER buy one!). This guide shows you how to run ARTCE on the obsolete hard and software provide by and to the Synology community. More expensive Synology NAS's supposedly allow you to run Etherpad via Docker Images.
+My specific hardware is a somewhat crippled ARM based Synology Nas (NEVER EVER buy one!). This guide shows you how to run ARTCE on the obsolete hard- and software provided by and to the Synology community. More expensive Synology NAS's supposedly allow you to run Etherpad via Docker Images (Still, NEVER EVER buy one, or atleast keep it offline ;).
 
 ### Synology Hardware Version
 DS215j
